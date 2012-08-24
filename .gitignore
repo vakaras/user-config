@@ -1,3 +1,6 @@
-# for projects that use Waf for building: http://code.google.com/p/waf/
 .waf-*
 .lock-*
+bin
+build/
+env/
+waf
