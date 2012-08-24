@@ -1,0 +1,11 @@
+[Dialer Defaults]
+Init2 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+Modem Type = USB Modem
+Phone = *99***1#
+ISDN = 0
+Username = wap
+Init1 = ATZ
+Password = wap
+Modem = /dev/ttyACM0
+Baud = 460800
+Stupid Mode = 1
