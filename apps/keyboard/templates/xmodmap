@@ -1,0 +1,59 @@
+clear lock
+keycode 66 = Escape
+! 
+! Reikalingų unikodo simbolių priskyrimas. Pagal:
+! http://superuser.com/questions/189869/xmodmap-six-characters-to-one-key
+!
+! Klavišo keycode galima gauti su programa xev.
+! keycode <klavišas> = <paprastas> <SHIFT> <?> <?> <ALT GR> <?> <?> <?>
+!
+! lt us klaviatūra turi dead keys:
+!   
+!     [ { ä å
+!     ] } ã ā
+!     \ | à ă
+!     ; : á ő
+!     ' " â ǎ
+!     / ? ạ ȧ
+! 
+! Modifikatoriai.
+!
+! ò     (Pastaba: U0060 yra `, o U007E yra ~)
+keycode 49 = U0060 U007E U0060 U007E U0300 UAC U0060 U007E
+! ó ö   (Pastaba: U0022 yra ", o U0027 ')
+keycode 29 = y Y y Y U0301 U0308 y Y
+! ô
+keycode 55 = v V v V U0302 V v V
+! õ
+keycode 28 = t T t T U0303 T t T
+! ō
+keycode 24 = q Q q Q U0304 Q q Q
+! ȯ     (Pastaba: U002C yra kablelis (,), o U003C <)
+keycode 59 = U002C U003C U002C U003C U0307 U003C U002C U003C
+! ̧o ̨o
+keycode 54 = c C c C U0328 U0327 c C
+! 
+! Simboliai.
+!
+! 9 ( „ “
+keycode 18 = 9 U28 9 U28 U201E U201C 9 U28
+!
+! 0 ) “ ”
+keycode 19 = 0 U29 0 U29 U201C U201D 0 U29
+! …
+keycode 40 = d D d D U2026 D d D
+! Vokiečių ß ẞ
+keycode 39 = s S s S U00DF U1E9E s S
+! Vokiečių ä Ä
+keycode 38 = a A a A UE4 UC4 a A
+! Vokiečių ü Ü
+keycode 30 = u U u U UFC UDC u U
+! Vokiečių ö Ö
+keycode 32 = o O o O UF6 UD6 o O
+! 
+! Emotikonai.
+!
+! ☺ (šypsosi)
+keycode 57 = n N n N U263A N n N
+! ☹ (liūdi)
+keycode 58 = m M m M U2639 M m M
