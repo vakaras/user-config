@@ -1,0 +1,13 @@
+[global]
+model = AT
+connection = serial
+port = /dev/ttyACM0
+# This is default phone config section
+# port = 00:12:D2:XX:XX:XX
+# model = 6230
+# initlength = default
+# connection = bluetooth
+# use_locking = no
+# serial_baudrate = 19200
+# serial_write_usleep = 10000
+# smsc_timeout = 20

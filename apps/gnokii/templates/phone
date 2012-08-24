@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# With Nokia E50 works only identify and sendsms.
+
+cmd="gnokii --config ${HOME}/.gnokiirc"
+
+case "${1}" in 
+  info)
+    gnokii --config "${HOME}/.gnokiirc" --identify
+    ;;
+  sms)
+    # dir="TODO: specify folder where to save send sms"
+    exit 1
+    msg=`date "+%F %H:%M:%S"`
+    msgfile="${dir}/${msg}"
+    vim "${msgfile}"
+    cat "${msgfile}" | \
+      gnokii --config "${HOME}/.gnokiirc" --sendsms "${2}" \
+      &>> "${msgfile}"
+    echo "Number: ${2}" >> "${msgfile}"
+    echo "Žinutė: ${msgfile}:"
+    cat "${msgfile}"
+    ;;
+  smsstatus)
+    ${cmd} --showsmsfolderstatus
+    ;;
+  smsdumpsm)
+    ${cmd} --getsms SM 1 'end' --file sms.sm.mbox
+    ;;
+  smsdumpme)
+    ${cmd} --getsms ME 1 'end' --file sms.me.mbox
+    ;;
+  contactsdumpsm) 
+    ${cmd} --getphonebook SM 1 end --raw 
+    ;;
+  contactsdumpme) 
+    ${cmd} --getphonebook ME 1 5
+    ;;
+  *)
+    echo "Usage:"  >&2
+    echo "  phone info" >&2
+    echo "  phone sms <phone number>" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
