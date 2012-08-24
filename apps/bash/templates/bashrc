@@ -1,0 +1,96 @@
+{% block base %}
+
+{% block path %}
+
+PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+
+# TeX Live: FIXME: Refactor!
+PATH="$HOME/.texlive/bin/x86_64-linux:$PATH"
+MANPATH="$HOME/.texlive/texmf/doc/man:$MANPATH"
+INFOPATH="$HOME/.texlive/texmf/doc/info:$INFOPATH"
+
+{% endblock %}
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+{% block history %}
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+{% endblock %}
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+function PS1_last_command_code () {
+  local ret="$?"
+  if [ ! $ret -eq 0 ]; then
+    echo -e "\033[01;31m(exit code: $ret)\033[00m ";
+  fi;
+  }
+
+function PS1_get_git_function () {
+  if [ -f /usr/bin/git ]; then
+    echo '\[\033[31m\]\[\033[1m\]$(__git_ps1 ":%s ")\[\033[00m\]\[\033[22m\]';
+  else
+    echo '';
+  fi;
+  }
+
+green='\[\033[01;32m\]';
+reset='\[\033[00m\]';
+blue='\[\033[01;34m\]';
+
+PS1_1='${debian_chroot:+($debian_chroot)}';
+PS1_command='$(PS1_last_command_code)';
+PS1_info="${green}\u@\h${reset}:${blue}\w${reset}";
+
+PS1="${PS1_1}${PS1_command}${PS1_info} $(PS1_get_git_function)$ ${PSI_command} \n"
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable color support of ls and also add handy aliases
+#if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
+    #eval "`dircolors -b`"
+#fi
+
+if [ -n "${DISPLAY+x}" ]; then
+  # Change CapsLock into Escape
+  echo "Sourcing X settings."
+  xmodmap ~/.xmodmaprc
+fi
+
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# Enable VI mode. 
+# For key bindings: man readline; # Search for vi-editing-mode
+set -o vi
+
+# Pakeičiam antraštę paprastesnei navigacijai tarp screen langų.
+case $TERM in
+ xterm*|rxvt*)
+   PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}["${PWD:(-40)}"]\007"'
+ ;;
+ screen*)
+ PROMPT_COMMAND='echo -ne "\033k\033\0134\033k[`echo ${PWD}`]@${HOSTNAME}\033\0134"'
+ ;;
+ *)
+ ;;
+esac
+
+#export DEVELOPER="{{FULL_NAME}} <{{EMAIL}}>"
+#export DEVELOPER_NAME="{{FULL_NAME}}"
+#export DEVELOPER_EMAIL="{{EMAIL}}"
+{% endblock %}

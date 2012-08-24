@@ -1,0 +1,26 @@
+# vim: set ft=bash
+{% block base %}
+
+{% block default %}
+alias ls='ls --color=auto'
+alias rm='rm -i'
+alias ll='ls -lh'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+{% endblock %}
+
+{% block git %}
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gs='git status'
+alias ga='git add'
+alias gap='git add --patch'
+alias gp='git push'
+alias gd='git diff --color'
+alias gdc='git diff --color --cached'
+alias git-remove-ignored='git clean -d -x -f'
+{% endblock %}
+
+{% endblock %}
