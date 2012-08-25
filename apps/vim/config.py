@@ -32,6 +32,11 @@
             'extension': '.vba.gz',
             },
         {
+            'routine': 'vimball',
+            'url': 'http://www.vim.org/scripts/download_script.php?src_id=13387',
+            'extension': '.vba',
+            },
+        {
             'routine': 'latex_suite',
             },
         ]
