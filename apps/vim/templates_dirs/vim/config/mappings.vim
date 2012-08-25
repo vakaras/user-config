@@ -10,13 +10,18 @@ nmap <leader>f :find<cr>
 iab xdate <c-r>=strftime("%Y-%m-%d")<cr>
 iab xtime <c-r>=strftime("%H:%M:%S")<cr>
 
-" Default auto complete for (, [, {, ", '
-inoremap $1 ()<++><esc>:let leavechar=")"<cr>4hi
-inoremap $2 []<++><esc>:let leavechar="]"<cr>4hi
-inoremap $4 {<esc>o}<esc>o<++><esc>k>>:let leavechar="}"<cr>O
-inoremap $3 {}<++><esc>:let leavechar="}"<cr>4hi
-inoremap $q ''<++><esc>:let leavechar="'"<cr>4hi
-inoremap $w ""<++><esc>:let leavechar='"'<cr>4hi
+{% raw %}
+augroup MyIMAPs
+    au!
+    au VimEnter * call IMAP("$t", "{% <++> %}<++>", "")
+    au VimEnter * call IMAP("$v", "{{ <++> }}<++>", "")
+    au VimEnter * call IMAP("((", "(<++>)<++>", "")
+    au VimEnter * call IMAP("[[", "[<++>]<++>", "")
+    au VimEnter * call IMAP("{{", "{<++>}<++>", "")
+    au VimEnter * call IMAP("\"\"", "\"<++>\"<++>", "")
+    au VimEnter * call IMAP("\'\'", "\'<++>\'<++>", "")
+augroup END
+{% endraw %}
 
 " LaTeX Alt-Key remap.
 imap <leader>b <Plug>Tex_MathBF
