@@ -64,14 +64,6 @@ call Include(g:VIM_CONFIG_DIR, 'status_line')
 " Search options:
 call Include(g:VIM_CONFIG_DIR, 'search')
 
-"Map auto complete of (, ", ', [
-inoremap $1 ()<++><esc>:let leavechar=")"<cr>4hi
-inoremap $2 []<++><esc>:let leavechar="]"<cr>4hi
-inoremap $4 {<esc>o}<esc>o<++><esc>k>>:let leavechar="}"<cr>O
-inoremap $3 {}<++><esc>:let leavechar="}"<cr>4hi
-inoremap $q ''<++><esc>:let leavechar="'"<cr>4hi
-inoremap $w ""<++><esc>:let leavechar='"'<cr>4hi
-
 " Buffers:
 call Include(g:VIM_CONFIG_DIR, 'backup')
 
