@@ -45,7 +45,10 @@ def latex_suite(ctx, **kwargs):
             if os.path.isdir(new_src):
                 copy(new_src, new_dst)
             else:
-                os.makedirs(dst, 0o777, True)
+                try:
+                    os.makedirs(dst, 0o777, True)
+                except OSError:
+                    pass
                 shutil.copy2(new_src, new_dst)
     for directory in os.listdir(path):
         if directory in (
