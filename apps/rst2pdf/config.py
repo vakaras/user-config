@@ -1,6 +1,5 @@
 {
     'install': [
-        # TODO: 'gnokii',
         ],
     'mkdir': [
         home('.rst2pdf/styles'),
