@@ -1,3 +1,7 @@
+{% block syntax_highlight %}
+let python_highlight_all = 1
+{% endblock %}
+
 {% block pep8 %}
 set shiftwidth=4
 
