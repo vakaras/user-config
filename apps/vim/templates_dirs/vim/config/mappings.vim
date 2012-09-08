@@ -15,9 +15,9 @@ augroup MyIMAPs
     au!
     au VimEnter * call IMAP("$t", "{% <++> %}<++>", "")
     au VimEnter * call IMAP("$v", "{{ <++> }}<++>", "")
-    au VimEnter * call IMAP("((", "(<++>)<++>", "")
-    au VimEnter * call IMAP("[[", "[<++>]<++>", "")
-    au VimEnter * call IMAP("{{", "{<++>}<++>", "")
+    au VimEnter * call IMAP("()", "(<++>)<++>", "")
+    au VimEnter * call IMAP("[]", "[<++>]<++>", "")
+    au VimEnter * call IMAP("{}", "{<++>}<++>", "")
     au VimEnter * call IMAP("\"\"", "\"<++>\"<++>", "")
     au VimEnter * call IMAP("\'\'", "\'<++>\'<++>", "")
 augroup END
